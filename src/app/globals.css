@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/*
+ * DESIGN TOKENS - the app's visual identity in one place.
+ * Tailwind v4 reads @theme variables and turns them into utility classes:
+ * "ink" -> text-ink, bg-ink | "paper" -> bg-paper | "leaf" -> bg-leaf etc.
+ * Change these values once and the whole app re-skins.
+ */
+@theme {
+  --color-paper: #f6f5f1; /* warm off-white app background */
+  --color-card: #ffffff;
+  --color-ink: #16211c; /* near-black with a green undertone */
+  --color-ink-soft: #5c6b63; /* secondary text */
+  --color-ink-faint: #93a29a; /* placeholder / captions */
+  --color-leaf: #0d7a5f; /* primary brand green - money, growth */
+  --color-leaf-deep: #0a5c47; /* hover state */
+  --color-leaf-soft: #e3f1ec; /* tinted backgrounds */
+  --color-forest: #10322a; /* sidebar dark green */
+  --color-forest-deep: #0b241e;
+  --color-gold: #d9a13b; /* accents - streaks, highlights */
+  --color-gold-soft: #faf0db;
+  --color-rose: #d6455b; /* expenses, warnings */
+  --color-rose-soft: #fbeef0;
+  --color-sky: #3d7dd8; /* income, info */
+  --color-sky-soft: #e9f1fc;
+  --color-line: #e6e4de; /* borders */
+
+  --font-sans: "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+/* Slim, unobtrusive scrollbars for panels. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c9c6bd transparent;
+}
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #c9c6bd;
+  border-radius: 999px;
+}
+
+/* Gentle entrance animation for cards (pure CSS, no library). */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rise-in {
+  animation: rise-in 0.45s ease both;
+}
+
+/* Shimmer effect used by loading skeletons. */
+@keyframes shimmer {
+  from {
+    background-position: -400px 0;
+  }
+  to {
+    background-position: 400px 0;
+  }
+}
+.skeleton {
+  background: linear-gradient(90deg, #eceae4 25%, #f6f5f1 50%, #eceae4 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: 0.75rem;
+}
